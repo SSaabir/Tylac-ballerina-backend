@@ -1,3 +1,12 @@
-[project]
-org-name = "ss"
+[package]
+org-name = "hp"
+name = "tylac_ballerina_backend"
 version = "0.1.0"
+
+[build-options]
+observabilityIncluded = true
+
+[[dependency]]
+org = "ballerinax"
+name = "mysql"
+version = "1.8.0"
