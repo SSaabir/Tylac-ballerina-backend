@@ -1,18 +1,16 @@
-package hp.tylac_ballerina_backend.db;
-import hp.tylac_ballerina_backend.db as db;
+
 import ballerina/log;
 
-public isolated function runMigration() returns error? {
-
+public function migrate() returns error? {
     // Role
-    check db:dbClient->execute(`CREATE TABLE IF NOT EXISTS Role (
+    _ = check dbClient->execute(`CREATE TABLE IF NOT EXISTS Role (
         id CHAR(36) PRIMARY KEY,
         roleType VARCHAR(50),
         description TEXT
     )`);
 
     // User
-    check db:dbClient->execute(`CREATE TABLE IF NOT EXISTS User (
+    _ = check dbClient->execute(`CREATE TABLE IF NOT EXISTS User (
         id CHAR(36) PRIMARY KEY,
         name VARCHAR(100),
         email VARCHAR(100) UNIQUE,
@@ -26,7 +24,7 @@ public isolated function runMigration() returns error? {
     )`);
 
     // Address
-    check db:dbClient->execute(`CREATE TABLE IF NOT EXISTS Address (
+    _=check dbClient->execute(`CREATE TABLE IF NOT EXISTS Address (
         id CHAR(36) PRIMARY KEY,
         country VARCHAR(100),
         state VARCHAR(100),
@@ -44,7 +42,7 @@ public isolated function runMigration() returns error? {
     )`);
 
     // Category
-    check db:dbClient->execute(`CREATE TABLE IF NOT EXISTS Category (
+    _=check dbClient->execute(`CREATE TABLE IF NOT EXISTS Category (
         id CHAR(36) PRIMARY KEY,
         name VARCHAR(100),
         description TEXT,
@@ -54,7 +52,7 @@ public isolated function runMigration() returns error? {
     )`);
 
     // Product
-    check db:dbClient->execute(`CREATE TABLE IF NOT EXISTS Product (
+    _=check dbClient->execute(`CREATE TABLE IF NOT EXISTS Product (
         id CHAR(36) PRIMARY KEY,
         name VARCHAR(100),
         description TEXT,
@@ -71,7 +69,7 @@ public isolated function runMigration() returns error? {
     )`);
 
     // Color
-    check db:dbClient->execute(`CREATE TABLE IF NOT EXISTS Color (
+    _=check dbClient->execute(`CREATE TABLE IF NOT EXISTS Color (
         id CHAR(36) PRIMARY KEY,
         name VARCHAR(50),
         hexCode VARCHAR(10),
@@ -83,7 +81,7 @@ public isolated function runMigration() returns error? {
     )`);
 
     // Offer
-    check db:dbClient->execute(`CREATE TABLE IF NOT EXISTS Offer (
+    _=check dbClient->execute(`CREATE TABLE IF NOT EXISTS Offer (
         id CHAR(36) PRIMARY KEY,
         name VARCHAR(100),
         description TEXT,
@@ -99,7 +97,7 @@ public isolated function runMigration() returns error? {
     )`);
 
     // Dealer
-    check db:dbClient->execute(`CREATE TABLE IF NOT EXISTS Dealer (
+    _=check dbClient->execute(`CREATE TABLE IF NOT EXISTS Dealer (
         id CHAR(36) PRIMARY KEY,
         name VARCHAR(100),
         email VARCHAR(100),
@@ -111,7 +109,7 @@ public isolated function runMigration() returns error? {
     )`);
 
     // DealerContract
-    check db:dbClient->execute(`CREATE TABLE IF NOT EXISTS DealerContract (
+    _=check dbClient->execute(`CREATE TABLE IF NOT EXISTS DealerContract (
         id CHAR(36) PRIMARY KEY,
         dealerId CHAR(36),
         contractNumber VARCHAR(100),
@@ -127,7 +125,7 @@ public isolated function runMigration() returns error? {
     )`);
 
     // Order
-    check db:dbClient->execute(`CREATE TABLE IF NOT EXISTS Order (
+    _=check dbClient->execute(`CREATE TABLE IF NOT EXISTS Order (
         id CHAR(36) PRIMARY KEY,
         userId CHAR(36),
         dealerId CHAR(36),
@@ -140,7 +138,7 @@ public isolated function runMigration() returns error? {
     )`);
 
     // OrderItem
-    check db:dbClient->execute(`CREATE TABLE IF NOT EXISTS OrderItem (
+    _=check dbClient->execute(`CREATE TABLE IF NOT EXISTS OrderItem (
         id CHAR(36) PRIMARY KEY,
         orderId CHAR(36),
         productId CHAR(36),
@@ -155,7 +153,7 @@ public isolated function runMigration() returns error? {
     )`);
 
     // Invoice
-    check db:dbClient->execute(`CREATE TABLE IF NOT EXISTS Invoice (
+    _=check dbClient->execute(`CREATE TABLE IF NOT EXISTS Invoice (
         id CHAR(36) PRIMARY KEY,
         orderId CHAR(36),
         totalAmount DECIMAL(10,2),
@@ -166,7 +164,7 @@ public isolated function runMigration() returns error? {
     )`);
 
     // Payment
-    check db:dbClient->execute(`CREATE TABLE IF NOT EXISTS Payment (
+    _=check dbClient->execute(`CREATE TABLE IF NOT EXISTS Payment (
         id CHAR(36) PRIMARY KEY,
         orderId CHAR(36),
         amount DECIMAL(10,2),
@@ -178,7 +176,7 @@ public isolated function runMigration() returns error? {
     )`);
 
     // Shipment
-    check db:dbClient->execute(`CREATE TABLE IF NOT EXISTS Shipment (
+    _=check dbClient->execute(`CREATE TABLE IF NOT EXISTS Shipment (
         id CHAR(36) PRIMARY KEY,
         orderId CHAR(36),
         trackingNumber VARCHAR(100),
@@ -194,7 +192,7 @@ public isolated function runMigration() returns error? {
     )`);
 
     // Review
-    check db:dbClient->execute(`CREATE TABLE IF NOT EXISTS Review (
+    _=check dbClient->execute(`CREATE TABLE IF NOT EXISTS Review (
         id CHAR(36) PRIMARY KEY,
         productId CHAR(36),
         userId CHAR(36),
@@ -207,7 +205,7 @@ public isolated function runMigration() returns error? {
     )`);
 
     // Inquiry
-    check db:dbClient->execute(`CREATE TABLE IF NOT EXISTS Inquiry (
+    _=check dbClient->execute(`CREATE TABLE IF NOT EXISTS Inquiry (
         id CHAR(36) PRIMARY KEY,
         userId CHAR(36),
         dealerId CHAR(36),
@@ -221,7 +219,7 @@ public isolated function runMigration() returns error? {
     )`);
 
     // Notification
-    check db:dbClient->execute(`CREATE TABLE IF NOT EXISTS Notification (
+    _=check dbClient->execute(`CREATE TABLE IF NOT EXISTS Notification (
         id CHAR(36) PRIMARY KEY,
         userId CHAR(36),
         dealerId CHAR(36),
@@ -236,7 +234,7 @@ public isolated function runMigration() returns error? {
     )`);
 
     // ActivityLog
-    check db:dbClient->execute(`CREATE TABLE IF NOT EXISTS ActivityLog (
+    _=check dbClient->execute(`CREATE TABLE IF NOT EXISTS ActivityLog (
         id CHAR(36) PRIMARY KEY,
         userId CHAR(36),
         dealerId CHAR(36),

@@ -1,10 +1,11 @@
+import db;
+import models;
+import ballerina/uuid;
+import ballerina/time;
+import ballerina/lang.'string as string;
+import ballerina/lang.'error as error;
+
 isolated function createUser(User user) returns User|error {
-    if !isValidEmail(user.email) {
-        return error("Invalid email format");
-    }
-    if !isValidPhone(user.phone) {
-        return error("Invalid phone number format");
-    }
 
     user.id = uuid:create();
     user.createdAt = time:utcNow();

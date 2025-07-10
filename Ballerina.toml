@@ -1,12 +1,10 @@
 [package]
-org-name = "hp"
+org = "tylac"
 name = "tylac_ballerina_backend"
 version = "0.1.0"
 
 [build-options]
 observabilityIncluded = true
 
-[[dependency]]
-org = "ballerinax"
-name = "mysql"
-version = "1.8.0"
+[dependencies]
+"ballerinax/mysql" = "1.8.0" # Add this manually
