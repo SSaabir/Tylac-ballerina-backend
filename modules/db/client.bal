@@ -9,7 +9,7 @@ public final DbClient dbClient = check new mysql:Client(
 );
 
 // Optional init function to verify DB connection
-public function init() returns error? {
+function init() returns error? {
     sql:ParameterizedQuery query = `SELECT 1`;
     _ = check dbClient->execute(query);
     return;
